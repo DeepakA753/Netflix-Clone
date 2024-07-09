@@ -3,9 +3,12 @@ import styled from "styled-components";
 import BackgroundImage from "../components/BackgroundImage";
 import Header from "../components/Header";
 import { firebaseAuth } from "../utils/firebase-config";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
 
 const Signup = () => {
+  const navigate = useNavigate();
+
   const [showPassword, setShowPassword] = useState(false);
   const [formValues, setFormValues] = useState({
     email: "",
@@ -20,6 +23,10 @@ const Signup = () => {
       console.log(err);
     }
   };
+
+  onAuthStateChanged(firebaseAuth, (currentUser) => {
+    if(currentUser) navigate("/");
+  })
 
   return (
     <Container showPassword={showPassword}>
