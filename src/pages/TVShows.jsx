@@ -10,7 +10,7 @@ import styled from "styled-components";
 import { onAuthStateChanged } from "firebase/auth";
 import SelectGenre from "../components/SelectGenre";
 
-const Movies = () => {
+const TVShows = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const genresLoaded = useSelector((state) => state.netflix.genresLoaded);
@@ -29,7 +29,7 @@ const Movies = () => {
   }, []);
 
   useEffect(() => {
-    if (genresLoaded) dispatch(fetchMovies({ type: "movie" }));
+    if (genresLoaded) dispatch(fetchMovies({ type: "tv" }));
   }, [genresLoaded]);
 
   onAuthStateChanged(firebaseAuth, (currentUser) => {
@@ -43,7 +43,7 @@ const Movies = () => {
         <Navbar isScrolled={isScrolled} />
       </div>
       <div className="data">
-        <SelectGenre genres={genres} type="movie" />
+        <SelectGenre genres={genres} type="tv" />
         {movies.length ? <Slider movies={movies} /> : <NotAvailable />}
       </div>
     </Container>
@@ -61,4 +61,4 @@ const Container = styled.div`
   }
 `;
 
-export default Movies;
+export default TVShows;

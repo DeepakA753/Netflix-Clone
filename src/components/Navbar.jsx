@@ -21,7 +21,7 @@ const Navbar = ({ isScrolled }) => {
 
   onAuthStateChanged(firebaseAuth, (currentUser) => {
     if(!currentUser){
-        navigate("/login")
+        navigate("/signup")
     }
   })
 
@@ -30,7 +30,7 @@ const Navbar = ({ isScrolled }) => {
       <nav className={`${isScrolled ? "scrolled" : ""} flex`}>
         <div className="left flex a-center">
           <div className="brand flex a-center j-center">
-            <img src={logo} alt="Logo" />
+            <img src={logo} alt="Logo" onClick={() => navigate("/")} />
           </div>
           <ul className="links flex">
             {links.map(({ name, link }) => {
@@ -95,6 +95,7 @@ const Container = styled.div`
       .brand {
         img {
           height: 4rem;
+          cursor: pointer;
         }
       }
       .links {

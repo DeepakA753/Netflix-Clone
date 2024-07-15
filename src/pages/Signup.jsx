@@ -3,7 +3,10 @@ import styled from "styled-components";
 import BackgroundImage from "../components/BackgroundImage";
 import Header from "../components/Header";
 import { firebaseAuth } from "../utils/firebase-config";
-import { createUserWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
+import {
+  createUserWithEmailAndPassword,
+  onAuthStateChanged,
+} from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 
 const Signup = () => {
@@ -25,8 +28,8 @@ const Signup = () => {
   };
 
   onAuthStateChanged(firebaseAuth, (currentUser) => {
-    if(currentUser) navigate("/");
-  })
+    if (currentUser) navigate("/");
+  });
 
   return (
     <Container showPassword={showPassword}>
